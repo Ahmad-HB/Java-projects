@@ -1,41 +1,26 @@
+import java.util.Random;
 
-public class Employee {
+public class Employee extends User {
 
-	private String Name;
-	private int ID;
 	private String Role;
 	private String status;
 
-	public Employee(String name, int id, String role) {
-
-		this.Name = name;
-		this.ID = id;
-		this.Role = role;
+	public Employee(String name, int age) {
+		super(name,age);
+		setRole();
 		this.status = Status.Free.toString();
 	}
 
-	public String getName() {
-		return Name;
-	}
-
-	public void setName(String name) {
-		Name = name;
-	}
-
-	public int getID() {
-		return ID;
-	}
-
-	public void setID(int iD) {
-		ID = iD;
-	}
 
 	public String getRole() {
 		return Role;
 	}
 
-	public void setRole(String role) {
-		Role = role;
+	public void setRole() {
+		Roles[] roles = Roles.values();
+		Random random = new Random();
+        int randomIndex = random.nextInt(roles.length);
+        this.Role = roles[randomIndex].toString();
 	}
 
 	public String getStatus() {
@@ -46,5 +31,9 @@ public class Employee {
 		this.status = status;
 	}
 	
+	public void toStringUser() {
+		super.toStringUser();
+        System.out.println(", Role: " + Role);
+    }
 	
 }

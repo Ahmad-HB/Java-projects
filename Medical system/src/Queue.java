@@ -86,6 +86,7 @@ public class Queue {
 	public void printQueue() {
 		if (isEmpty()) {
 			System.out.println("Queue is empty.");
+			System.out.println();
 			return;
 		}
 

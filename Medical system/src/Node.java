@@ -2,7 +2,7 @@
 public class Node {
 	
 	Object obj;
-	Node left, right, next;
+	Node left, right, next, top;
 
 	public Node(Object obj) {
 		this.obj = obj;

@@ -1,49 +1,15 @@
+import java.util.Random;
 
-public class Patient {
+public class Patient extends User{
 	
-	private String Name;
-	private int ID;
-	private int Age;
 	private String status;
 	private String Ailment;
 	
 	
-	public Patient(String name, int id, int age, String ailment) {
-		this.Name = name;
-		this.ID = id;
-		this.Age = age;
-		this.Ailment = ailment;
+	public Patient(String name, int age) {
+		super(name,age);
+		setAilment();
 		this.status = Status.Waitting.toString();
-	}
-
-
-	public String getName() {
-		return Name;
-	}
-
-
-	public void setName(String name) {
-		Name = name;
-	}
-
-
-	public int getID() {
-		return ID;
-	}
-
-
-	public void setID(int iD) {
-		ID = iD;
-	}
-
-
-	public int getAge() {
-		return Age;
-	}
-
-
-	public void setAge(int age) {
-		Age = age;
 	}
 
 
@@ -52,8 +18,11 @@ public class Patient {
 	}
 
 
-	public void setAilment(String ailment) {
-		Ailment = ailment;
+	public void setAilment() {
+		Ailments[] ailment = Ailments.values();
+		Random random = new Random();
+        int randomIndex = random.nextInt(ailment.length);
+        this.Ailment = ailment[randomIndex].toString();
 	}
 
 
@@ -66,7 +35,10 @@ public class Patient {
 		this.status = status;
 	}
 	
-	
+	public void toStringUser() {
+		super.toStringUser();
+        System.out.println("status :"+status+"Ailment :"+Ailment);
+    }
 	
 		
 }
