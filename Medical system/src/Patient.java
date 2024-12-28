@@ -2,15 +2,16 @@
 public class Patient {
 	
 	private String Name;
-	private int ID;
+	private int ID ;
+	private static int lastID=0;
 	private int Age;
 	private String status;
 	private String Ailment;
 	
 	
-	public Patient(String name, int id, int age, String ailment) {
+	public Patient(String name, int age, String ailment) {
 		this.Name = name;
-		this.ID = id;
+		setID();
 		this.Age = age;
 		this.Ailment = ailment;
 		this.status = Status.Waitting.toString();
@@ -31,9 +32,8 @@ public class Patient {
 		return ID;
 	}
 
-
-	public void setID(int iD) {
-		ID = iD;
+	public void setID() {
+		this.ID = ++lastID;
 	}
 
 
