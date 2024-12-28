@@ -3,13 +3,14 @@ public class Employee {
 
 	private String Name;
 	private int ID;
+	private static int lastID=0;
 	private String Role;
 	private String status;
 
 	public Employee(String name, int id, String role) {
 
 		this.Name = name;
-		this.ID = id;
+		setID();
 		this.Role = role;
 		this.status = Status.Free.toString();
 	}
@@ -26,8 +27,8 @@ public class Employee {
 		return ID;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+	public void setID() {
+		this.ID = ++lastID;
 	}
 
 	public String getRole() {
