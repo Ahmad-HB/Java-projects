@@ -37,7 +37,7 @@ public class User {
 	}
 
 	public void toStringUser() {
-        System.out.print("ID :"+getID()+", Name: " + getName() +", Age: " + getAge());
+        System.out.print("User ID :"+getID()+", Name: " + getName() +", Age: " + getAge());
 	}
 
 }

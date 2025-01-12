@@ -14,10 +14,7 @@ public class Stack {
 		newNode.next = top;
 		top = newNode;
 		size++;
-		System.out.println("======================================");
-		System.out.println("Pushed");
-		System.out.println("Patient ID " +((Patient) newNode.obj).getID() + " discharged (added to stack).");
-		System.out.println("======================================");
+		System.out.println("Patient ID " +((Patient) newNode.obj).getID() + "added to Consultation.");
 		System.out.println();
 	}
 	
@@ -30,24 +27,17 @@ public class Stack {
         Patient patient = (Patient) top.obj;
         top = top.next;                
         size--;
-        System.out.println("======================================");
-        System.out.println("Poped");
-        System.out.println("Patient ID :" + patient.getID() + " re-admitted (removed from stack).");
-        System.out.println("======================================");
+        System.out.println("Patient ID :" + patient.getID() + " removed from Consultation.");
         System.out.println();
         return patient;
     }
-	
 
 	public void peek() {
         if (isEmpty()) {
             System.out.println("Stack is empty. No patients to view.");
             System.out.println();
         }
-        System.out.println("======================================");
-        System.out.println("Peek");
         System.out.println("Patient ID :" + ((Patient) top.obj).getID()+ ", Patient Name :" + ((Patient) top.obj).getName());
-        System.out.println("======================================");
         System.out.println();
     }
 
@@ -65,7 +55,7 @@ public class Stack {
             System.out.println();
         } else {
         	System.out.println("======================================");
-            System.out.println("Discharged Patients in Stack (Top to Bottom):");
+            System.out.println("Waitting Patients in Consultation (Top to Bottom):");
             Node current = top;
             while (current != null) {
                 Patient patient = (Patient) current.obj;

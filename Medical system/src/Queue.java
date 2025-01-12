@@ -15,11 +15,9 @@ public class Queue {
 		return front == null;
 	}
 
-
 	public int getSize() {
 		return size;
 	}
-
 
 	public void enqueue(Object obj) {
 		if (!(obj instanceof Patient)) {
@@ -46,8 +44,7 @@ public class Queue {
 		System.out.println();
 	}
 
-
-	public Object dequeue() {
+	public Object dequeueTemp() {
 		if (isEmpty()) {
 			System.out.println("Queue is empty. Nothing to dequeue.");
 			
@@ -58,7 +55,7 @@ public class Queue {
 
 		
 		if (obj instanceof Patient) {
-			((Patient) obj).setStatus(Status.Done.toString());
+			((Patient) obj).setStatus(Status.UnderConsultation.toString());
 		} 
 
 		front = front.next;
@@ -73,6 +70,31 @@ public class Queue {
 		return obj;
 	}
 
+	public Object dequeueDone() {
+		if (isEmpty()) {
+			System.out.println("Queue is empty. Nothing to dequeue.");
+
+			return null;
+		}
+
+		Object obj = front.obj;
+
+
+		if (obj instanceof Patient) {
+			((Patient) obj).setStatus(Status.Done.toString());
+		}
+
+		front = front.next;
+
+		if (front == null) {
+			rear = null;
+		}
+
+		size--;
+		System.out.println("Dequeued: " + ((Patient) obj).getName());
+		System.out.println();
+		return obj;
+	}
 
 	public Object peek() {
 		if (isEmpty()) {
@@ -81,7 +103,6 @@ public class Queue {
 		}
 		return front.obj;
 	}
-
 
 	public void printQueue() {
 		if (isEmpty()) {
@@ -96,7 +117,7 @@ public class Queue {
 				Patient patient = (Patient) current.obj;
 				System.out.println("=====================================================");
 				System.out.println("Queue elements:");
-				System.out.println("Patient - Name: " + patient.getName() + ", ID: " + patient.getID() + ", Status: "
+				System.out.println("Patient - Name: " + patient.getName() + ", ID: " + patient.getPatientId() + ", Status: "
 						+ patient.getStatus());
 				System.out.println("=====================================================");
 				System.out.println();

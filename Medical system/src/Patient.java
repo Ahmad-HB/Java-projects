@@ -4,11 +4,14 @@ public class Patient extends User{
 	
 	private String status;
 	private String Ailment;
+	private int patientId;
+	private static int lastPatientId =0;
 	
 	
 	public Patient(String name, int age) {
 		super(name,age);
 		setAilment();
+		setPatientId();
 		this.status = Status.Waitting.toString();
 	}
 
@@ -35,9 +38,21 @@ public class Patient extends User{
 		this.status = status;
 	}
 	
+	
+	
+	public int getPatientId() {
+		return patientId;
+	}
+
+
+	public void setPatientId() {
+		this.patientId = ++lastPatientId;
+	}
+
+
 	public void toStringUser() {
 		super.toStringUser();
-        System.out.println("status :"+status+"Ailment :"+Ailment);
+        System.out.println(", Patient ID :"+getPatientId()+", status :"+status+"Ailment :"+Ailment);
     }
 	
 		

@@ -1,4 +1,4 @@
 
 public enum Status {
-	Waitting, Done, BeingProcessed, Free, Busy
+	Waitting, Done, BeingProcessed, Free, Busy, UnderConsultation
 }

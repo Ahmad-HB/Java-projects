@@ -46,9 +46,9 @@ public class BST {
 
 		Employee currentEmployee = (Employee) current.obj;
 
-		if (id == currentEmployee.getID()) {
+		if (id == currentEmployee.getEmployeeId()) {
 			return currentEmployee;
-		} else if (id < currentEmployee.getID()) {
+		} else if (id < currentEmployee.getEmployeeId()) {
 			return searchByIdRec(current.left, id);
 		} else {
 			return searchByIdRec(current.right, id);
