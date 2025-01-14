@@ -70,7 +70,7 @@ public class LinkedList {
 			return;
 		}
 
-		if (head.obj instanceof Patient && ((Patient) head.obj).getID() == id) {
+		if (head.obj instanceof Patient && ((Patient) head.obj).getPatientId() == id) {
 			head = head.next;
 			System.out.println("Patient with ID " + id + " has been deleted.");
 			System.out.println();
@@ -81,7 +81,7 @@ public class LinkedList {
 		Node previous = null;
 
 		while (current != null) {
-			if (current.obj instanceof Patient && ((Patient) current.obj).getID() == id) {
+			if (current.obj instanceof Patient && ((Patient) current.obj).getPatientId() == id) {
 				previous.next = current.next;
 				System.out.println("Patient with ID " + id + " has been deleted.");
 				System.out.println();
@@ -173,50 +173,66 @@ public class LinkedList {
 	        }
 	    } while (swapped);
 	}
-	
+
 	public void sortById() {
-	    head = mergeSort(head);
+		head = selectionSort(head);
 	}
 
-	private Node mergeSort(Node head) {
-	    if (head == null || head.next == null) return head;
+	private Node selectionSort(Node head) {
+		if (head == null || head.next == null) return head;
 
-	    Node[] halves = split(head);
-	    Node left = mergeSort(halves[0]);
-	    Node right = mergeSort(halves[1]);
+		Node sortedHead = null; // The new head for the sorted list
+		Node sortedTail = null; // Tail of the sorted list
 
-	    return merge(left, right);
+		while (head != null) {
+			// Find the node with the smallest patient ID
+			Node[] smallestAndPrev = findSmallestNode(head);
+			Node smallestNode = smallestAndPrev[0];
+			Node prevToSmallest = smallestAndPrev[1];
+
+			// Remove the smallest node from the original list
+			if (prevToSmallest != null) {
+				prevToSmallest.next = smallestNode.next;
+			} else {
+				head = smallestNode.next; // Update head if smallest node is the first node
+			}
+
+			smallestNode.next = null;
+
+			// Append the smallest node to the sorted list
+			if (sortedHead == null) {
+				sortedHead = smallestNode;
+				sortedTail = smallestNode;
+			} else {
+				sortedTail.next = smallestNode;
+				sortedTail = smallestNode;
+			}
+		}
+
+		return sortedHead;
 	}
 
-	private Node[] split(Node head) {
-	    if (head == null || head.next == null) return new Node[] {head, null};
+	private Node[] findSmallestNode(Node head) {
+		Node smallest = head;
+		Node prevToSmallest = null;
+		Node current = head;
+		Node prev = null;
 
-	    Node slow = head, fast = head.next;
-	    while (fast != null && fast.next != null) {
-	        slow = slow.next;
-	        fast = fast.next.next;
-	    }
+		while (current != null) {
+			if (getPatientId(current) < getPatientId(smallest)) {
+				smallest = current;
+				prevToSmallest = prev;
+			}
+			prev = current;
+			current = current.next;
+		}
 
-	    Node secondHalf = slow.next;
-	    slow.next = null;
-	    return new Node[] {head, secondHalf};
-	}
-
-	private Node merge(Node left, Node right) {
-	    if (left == null) return right;
-	    if (right == null) return left;
-
-	    if (getPatientId(left) <= getPatientId(right)) {
-	        left.next = merge(left.next, right);
-	        return left;
-	    } else {
-	        right.next = merge(left, right.next);
-	        return right;
-	    }
+		return new Node[]{smallest, prevToSmallest};
 	}
 
 	private int getPatientId(Node node) {
-	    return ((Patient) node.obj).getPatientId();
+		return ((Patient) node.obj).getPatientId();
 	}
+
 
 }

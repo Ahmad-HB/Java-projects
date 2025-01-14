@@ -16,13 +16,13 @@ public class BST {
 
 		Employee currentEmployee = (Employee) current.obj;
 
-		if (employee.getID() < currentEmployee.getID()) {
+		if (employee.getEmployeeId() < currentEmployee.getEmployeeId()) {
 			current.left = insertRec(current.left, employee);
-		} else if (employee.getID() > currentEmployee.getID()) {
+		} else if (employee.getEmployeeId() > currentEmployee.getEmployeeId()) {
 			current.right = insertRec(current.right, employee);
 		} else {
 
-			System.out.println("Employee with ID " + employee.getID() + " already exists.");
+			System.out.println("Employee with ID " + employee.getEmployeeId() + " already exists.");
 		}
 
 		return current;

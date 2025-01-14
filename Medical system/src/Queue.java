@@ -27,7 +27,7 @@ public class Queue {
 
 		
 		if (obj instanceof Patient) {
-			((Patient) obj).setStatus(Status.BeingProcessed.toString());
+			((Patient) obj).setStatus(Status.InEmergency.toString());
 		}
 
 		Node newNode = new Node(obj);
@@ -40,8 +40,6 @@ public class Queue {
 		}
 
 		size++;
-		System.out.println("Enqueued: " + ((Patient) obj).getName());
-		System.out.println();
 	}
 
 	public Object dequeueTemp() {
@@ -79,11 +77,6 @@ public class Queue {
 
 		Object obj = front.obj;
 
-
-		if (obj instanceof Patient) {
-			((Patient) obj).setStatus(Status.Done.toString());
-		}
-
 		front = front.next;
 
 		if (front == null) {
@@ -91,8 +84,6 @@ public class Queue {
 		}
 
 		size--;
-		System.out.println("Dequeued: " + ((Patient) obj).getName());
-		System.out.println();
 		return obj;
 	}
 

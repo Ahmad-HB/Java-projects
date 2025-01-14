@@ -33,17 +33,14 @@ public class Employee extends User {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
+
 	public int getEmployeeId() {
 		return employeeId;
 	}
 
-
 	public void setEmployeeId() {
 		this.employeeId = ++lastEmployeeId;
 	}
-
 
 	public void toStringUser() {
 		super.toStringUser();
